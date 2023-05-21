@@ -12,13 +12,13 @@ runcmd:
   - echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
     $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
   - apt update 
-  - apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  - apt install -y conntrack docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
   - curl -LOJ --output-dir /tmp/ https://github.com/kubernetes/minikube/releases/download/v1.30.1/minikube-linux-amd64
   - chmod +x /tmp/minikube-linux-amd64
   - mv /tmp/minikube-linux-amd64 /usr/local/bin/minikube
   - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
   - install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-  VERSION="v1.26.0" # check latest version in /releases page
-  curl -L https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/crictl-${VERSION}-linux-amd64.tar.gz --output crictl-${VERSION}-linux-amd64.tar.gz
-  sudo tar zxvf crictl-$VERSION-linux-amd64.tar.gz -C /usr/local/bin
-  rm -f crictl-$VERSION-linux-amd64.tar.gz
+  - VERSION="v1.26.0" # check latest version in /releases page
+  - curl -L https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/crictl-${VERSION}-linux-amd64.tar.gz --output crictl-${VERSION}-linux-amd64.tar.gz
+  - tar zxvf crictl-$VERSION-linux-amd64.tar.gz -C /usr/local/bin
+  - rm -f crictl-$VERSION-linux-amd64.tar.gz

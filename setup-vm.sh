@@ -3,7 +3,7 @@
 
 groupName="testVMGroup-$(shuf -i 1-9 -n 1)"
 VMName="ubuntu-testing"
-VMSize="Standard_B1ms"
+VMSize="Standard_B2s"
 region="westus3"
 
 az group create --name $groupName --location $region
@@ -25,5 +25,7 @@ az vm open-port --port 22 --resource-group $groupName --name $VMName
 fqdn_name=$(az network public-ip list --query "[].dnsSettings.fqdn" | gojq -r '.[]')
 
 ssh-add ~/.ssh/id_rsa
+
+ssh-keygen -f "~/.ssh/known_hosts" -R $fqdn_name
 
 ssh azureuser@$fqdn_name
