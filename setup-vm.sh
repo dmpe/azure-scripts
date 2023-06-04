@@ -24,8 +24,9 @@ az vm open-port --port 22 --resource-group $groupName --name $VMName
 
 fqdn_name=$(az network public-ip list --query "[].dnsSettings.fqdn" | gojq -r '.[]')
 
-ssh-add ~/.ssh/id_rsa
+ssh-add /home/jm/.ssh/id_rsa
 
-ssh-keygen -f "~/.ssh/known_hosts" -R $fqdn_name
+ssh-keygen -f "/home/jm/.ssh/known_hosts" -R $fqdn_name
+echo azureuser@$fqdn_name
 
 ssh azureuser@$fqdn_name
