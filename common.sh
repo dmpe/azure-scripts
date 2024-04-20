@@ -5,7 +5,7 @@ create_vm() {
     --resource-group $1 \
     --name $2 \
     --accept-term \
-    --image "Canonical:0001-com-ubuntu-server-mantic:24_04-gen2:latest" \
+    --image "canonical:0001-com-ubuntu-server-mantic:23_10-gen2:latest" \
     --admin-username azureuser \
     --size $3 \
     --public-ip-address-dns-name $4 \
