@@ -1,0 +1,19 @@
+FROM ubuntu:24.10
+USER root
+RUN (set -e;\
+apt update && apt upgrade -y && apt install curl -y;\
+curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.60.0;\
+VERSION="1.2.2";\
+curl -LO "https://github.com/oras-project/oras/releases/download/v${VERSION}/oras_${VERSION}_linux_amd64.tar.gz";\
+mkdir -p oras-install/;\
+tar -zxf oras_${VERSION}_*.tar.gz -C oras-install/;\
+mv oras-install/oras /usr/local/bin/;\
+rm -rf oras_${VERSION}_*.tar.gz oras-instal;\
+oras pull ghcr.io/aquasecurity/trivy-db:2;\
+tar -xzf db.tar.gz;\
+ls -al;\
+rm -rf ./db.tar.gz;\
+mkdir -p /root/.cache/trivy/db;\
+cp trivy.db metadata.json /root/.cache/trivy/db/;\
+)
+RUN trivy image --offline-scan ubuntu:23.10
