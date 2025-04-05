@@ -12,7 +12,7 @@ az vm create \
   --resource-group $groupName \
   --name $VMName \
   --accept-term \
-  --image "Canonical:0001-com-ubuntu-server-lunar:23_04-gen2:latest" \
+  --image "Canonical:0001-com-ubuntu-server-lunar:24_10-gen2:latest" \
   --custom-data ./cloud-init.txt \
   --admin-username azureuser \
   --size $VMSize \
