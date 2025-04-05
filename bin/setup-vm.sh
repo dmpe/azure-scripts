@@ -12,13 +12,14 @@ az vm create \
   --resource-group $groupName \
   --name $VMName \
   --accept-term \
-  --image "Canonical:0001-com-ubuntu-server-lunar:24_10-gen2:latest" \
-  --custom-data ./cloud-init.txt \
+  --image "Canonical:ubuntu-24_10:server:latest" \
   --admin-username azureuser \
   --size $VMSize \
   --public-ip-address-dns-name testvmalfadogmarker \
   --generate-ssh-keys \
   --public-ip-sku Standard
+
+sleep 10
 
 az vm open-port --port 22 --resource-group $groupName --name $VMName
 
