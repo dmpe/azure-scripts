@@ -1,7 +1,7 @@
 *.pub
 *.priv
 *.csv
-lib/tf/provider.tf
+provider.tf
 *.tfstate*
 .terraform
 *.lock.hcl
